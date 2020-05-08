@@ -4,3 +4,4 @@
 vue.config.js
 babel.config.js
 /assets
+/public
