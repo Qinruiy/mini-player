@@ -140,6 +140,7 @@ import {
   watch,
   toRefs,
   nextTick,
+  onMounted,
 } from "vue";
 import { useAudio } from "./audio";
 
@@ -160,6 +161,17 @@ export default defineComponent({
     },
   },
   setup(props) {
+    // preload covers
+    onMounted(() => {
+      props.tracks.forEach((track) => {
+        const link = document.createElement("link");
+        link.rel = "prefetch";
+        link.href = track.cover;
+        link.as = "image";
+        document.head.appendChild(link);
+      });
+    });
+
     const progress = ref(null as HTMLDivElement | null);
 
     const state = reactive({
