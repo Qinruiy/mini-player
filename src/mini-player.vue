@@ -171,15 +171,22 @@ export default defineComponent({
       return props.tracks[state.currentTrackIndex];
     });
 
-    const { duration, currentTime, paused, ended, audio } = useAudio(
-      currentTrack.value.source
-    );
+    const {
+      duration,
+      currentTime,
+      paused,
+      ended,
+      play,
+      pause,
+      setSrc,
+      setCurrentTime,
+    } = useAudio(currentTrack.value.source);
 
     //watch
     watch(
       () => state.currentTrackIndex,
       () => {
-        audio.value.src = currentTrack.value.source;
+        setSrc(currentTrack.value.source);
       }
     );
 
@@ -223,7 +230,7 @@ export default defineComponent({
         state.currentTrackIndex = props.tracks.length - 1;
       }
       nextTick(() => {
-        audio.value.play();
+        play();
       });
     };
 
@@ -235,20 +242,20 @@ export default defineComponent({
         state.currentTrackIndex = 0;
       }
       nextTick(() => {
-        audio.value.play();
+        play();
       });
     };
 
     const playAction = () => {
       if (paused.value) {
-        audio.value.play();
+        play();
       } else {
-        audio.value.pause();
+        pause();
       }
     };
 
     const clickProgress = (e: MouseEvent) => {
-      audio.value.pause();
+      pause();
       const position = e.pageX - (progress.value?.offsetLeft || 0);
       const width = progress.value?.offsetWidth || 0;
       let percentage = (100 * position) / width;
@@ -258,8 +265,8 @@ export default defineComponent({
       if (percentage < 0) {
         percentage = 0;
       }
-      audio.value.currentTime = (duration.value * percentage) / 100;
-      audio.value.play();
+      setCurrentTime((duration.value * percentage) / 100);
+      play();
     };
 
     return {

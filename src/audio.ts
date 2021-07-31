@@ -37,8 +37,27 @@ export const useAudio = (src: string) => {
     state.ended = true;
   };
 
+  const play = () => {
+    audio.value.play();
+  };
+
+  const pause = () => {
+    audio.value.pause();
+  };
+
+  const setSrc = (source: string) => {
+    audio.value.src = source;
+  };
+
+  const setCurrentTime = (time: number) => {
+    audio.value.currentTime = time;
+  };
+
   return {
     ...toRefs(state),
-    audio,
+    play,
+    pause,
+    setSrc,
+    setCurrentTime,
   };
 };
