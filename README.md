@@ -15,6 +15,9 @@ npm install mini-player
 
 ```
 import MINIPlayer from 'mini-player'
+<style>
+@import "mini-player/dist/style.css";
+</style>
 ```
 
 Example:
