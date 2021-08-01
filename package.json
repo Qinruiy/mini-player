@@ -1,9 +1,10 @@
 {
   "name": "mini-player",
   "private": false,
-  "version": "0.2.8",
+  "version": "0.2.9",
   "files": [
-    "dist"
+    "dist",
+    "types"
   ],
   "main": "./dist/mini-player.umd.js",
   "module": "./dist/mini-player.es.js",
