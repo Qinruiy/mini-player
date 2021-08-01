@@ -1,3 +1,4 @@
+import MiniPlayer from "./mini-player.vue";
 export { useAudio } from "./audio";
 
-export { default as MiniPlayer } from "./mini-player.vue";
+export default MiniPlayer;
