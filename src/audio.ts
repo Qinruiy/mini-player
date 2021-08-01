@@ -1,4 +1,4 @@
-import { reactive, ref, toRefs } from "@vue/runtime-core";
+import { reactive, ref, toRefs } from "vue";
 
 export const useAudio = (src: string) => {
   const audio = ref(new Audio(src));
